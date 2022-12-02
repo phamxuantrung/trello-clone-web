@@ -1,0 +1,194 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
+$navbar-app-bg-color: #0066a0;
+$bg-color: #0079bf;
+$list-content-bg-color: #ebecf0;
+$white-transparent-color: rgba(255, 255, 255, 0.2);
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: $bg-color;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 16px;
+}
+
+.wrapper {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 40px 50px 1fr;
+}
+
+.navbar {
+    &.app {
+        background-color: $navbar-app-bg-color;
+        padding: 6px 4px;
+    }
+
+    &.board {
+        padding: 8px 4px 4px 4px;
+    }
+}
+
+.board-cols {
+    margin: 0 6px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    user-select: none;
+    white-space: nowrap;
+    margin-bottom: 8px;
+
+    /* width */
+    &::-webkit-scrollbar {
+        height: 12px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        border-radius: 4px;
+        background: #0066a0;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background: #78aac7;
+    }
+
+    .list-wrapper {
+        display: inline-block;
+        height: 100%;
+        padding-bottom: 16px;
+        margin: 0 4px;
+        vertical-align: top;
+        white-space: nowrap;
+        width: 272px;
+    }
+
+    .list-content {
+        background-color: $list-content-bg-color;
+        display: flex;
+        flex-direction: column;
+        white-space: normal;
+        border-radius: 3px;
+        max-height: 100%;
+    }
+
+    .list-content .list-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 8px;
+        .header-name {
+            padding: 4px 6px;
+            font-weight: 600;
+            margin-left: 4px;
+        }
+
+        .header-extras {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 3px;
+            .more-icon {
+                width: 20px;
+                color: #5e6c84;
+            }
+            &:hover {
+                background-color: #091e4214;
+            }
+        }
+    }
+
+    .list-content .list-cards {
+        flex: 1 1 auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+        margin: 0 4px;
+        padding: 0 4px;
+        margin: 0 4px;
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+            border-radius: 4px;
+            background: #f9f9fc;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+            background: #c5c5c5;
+        }
+
+        .card {
+            display: block;
+            cursor: pointer;
+            text-decoration: none;
+            background-color: #fff;
+            border-radius: 3px;
+            margin-bottom: 8px;
+            max-width: 300px;
+            min-height: 20px;
+            color: #333;
+            box-shadow: 0 1px 0 #091e4240;
+            .card-title {
+                padding: 6px 8px;
+            }
+            .card-bg {
+                width: 100%;
+            }
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.3);
+            }
+        }
+    }
+
+    .list-content .list-add-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4px 8px;
+        margin-bottom: 8px;
+        margin-top: 2px;
+        .add-card-composer {
+            text-decoration: none;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 3px;
+            color: #5e6c84;
+            padding: 6px 8px;
+            flex: 1;
+
+            .icon {
+                width: 17px;
+                margin-right: 4px;
+            }
+
+            &:hover {
+                background-color: #091e4214;
+            }
+        }
+        .add-card-template {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 3px;
+            padding: 5px;
+            &:hover {
+                background-color: #091e4214;
+            }
+            .icon {
+                width: 18px;
+                color: #5e6c84;
+            }
+        }
+    }
+}
