@@ -1,31 +1,42 @@
-import "./BoardContent.scss"
+import "./BoardContent.scss";
 import { MoreIcon, PlusIcon, TemplateIcon } from "../../assets/icon";
+import sort from "../../util/sort";
+
+// import sample data
+import { sampleData } from "../../services/sampleData";
 
 function BoardContent() {
+    const columns = sort.order(sampleData.boards[0].columns, sampleData.boards[0].columnOrder, 'id')
+
     return (
-        <div>
-            {[1, 1, 1, 1, 1, 1].map((e, i) => {
+        <>
+            {columns.map((col, i) => {
                 return (
                     <div key={i} className="list-wrapper">
                         <div className="list-content">
                             <div className="list-header">
-                                <p className="header-name">To do</p>
+                                <p className="header-name">{col.title}</p>
                                 <div className="header-extras">
                                     <MoreIcon className="more-icon" />
                                 </div>
                             </div>
                             <div className="list-cards">
-                                <a href="/" className="card">
-                                    <img
-                                        className="card-bg"
-                                        src="https://trello-backgrounds.s3.amazonaws.com/SharedBackground/960x640/0544300f63565ddba9b2e994afd25040/photo-1669025466409-450f22c7561a.jpg"
-                                        alt="imgae"
-                                    />
-                                    <p className="card-title">Tiếng anh</p>
-                                </a>
-                                <a href="/" className="card">
-                                    <p className="card-title">Toán rời rạc</p>
-                                </a>
+                                {sort.order(col.cards, col.cardOrder, 'id').map((card, i) => {
+                                    return (
+                                        <a key={i} href="/" className="card">
+                                            {card.background && (
+                                                <img
+                                                    className="card-bg"
+                                                    src={card.background}
+                                                    alt=""
+                                                />
+                                            )}
+                                            <p className="card-title">
+                                                {card.title}
+                                            </p>
+                                        </a>
+                                    );
+                                })}
                             </div>
                             <div className="list-add-card">
                                 <a href="/" className="add-card-composer">
@@ -40,7 +51,7 @@ function BoardContent() {
                     </div>
                 );
             })}
-        </div>
+        </>
     );
 }
 
